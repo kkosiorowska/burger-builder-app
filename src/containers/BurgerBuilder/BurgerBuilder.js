@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import axios from '../../axios-orders';
 
 import Auxiliary from '../../hoc/Auxiliary/Auxiliary';
 import Burger from '../../components/Burger/Burger';
@@ -8,16 +9,14 @@ import Modal from '../../components/UI/Modal/Modal';
 import OrderSummary from '../../components/Burger/OrderSummary/OrderSummary';
 import Spinner from '../../components/UI/Spinner/Spinner';
 import withErrorHandler   from '../../hoc/withErrorHandler/withErrorHandler';
-import axios from '../../axios-orders';
 import * as actionTypes from '../../store/actions';
 
 class BurgerBuilder extends Component {
-
     state = {
         purchasing: false,
         loading: false,
         error: false
-    }
+    };
 
     componentDidMount () {
         console.log(this.props);
@@ -43,15 +42,15 @@ class BurgerBuilder extends Component {
     
     purchaseHandler =  () => {
         this.setState({purchasing: true});
-    }
+    };
 
     purchaseCancelHandler = () => {
         this.setState({ purchasing: false });
-    }
+    };
     purchaseContinueHandler = () => {
 
         this.props.history.push('/checkout');
-    }
+    };
 
     render () {
         const disabledInfo = {
@@ -104,11 +103,11 @@ const mapStateToProps = state => {
         ings: state.ingredients,
         price: state.totalPrice
     };
-}
+};
 const mapDispatchToProps = dispatch => {
     return {
-        onIngredientAdded: (ingName) => dispatch({ type: actionTypes.ADD_INGREDIENT, ingedientName: ingName }),
-        onIngredientRemoved: (ingName) => dispatch({ type: actionTypes.REMOVE_INGREDIENT, ingedientName: ingName })
+        onIngredientAdded: (ingName) => dispatch({ type: actionTypes.ADD_INGREDIENT, ingredientName: ingName }),
+        onIngredientRemoved: (ingName) => dispatch({ type: actionTypes.REMOVE_INGREDIENT, ingredientName: ingName })
     }
-}
+};
 export default connect(mapStateToProps, mapDispatchToProps)(withErrorHandler(BurgerBuilder, axios));
