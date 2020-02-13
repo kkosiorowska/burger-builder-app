@@ -13,7 +13,7 @@ const INGREDIENT_PRICES = {
     meat: 1.3
 };
 
-const burgerBuilder= (state = initialState, action) => {
+const reducer= (state = initialState, action) => {
     switch (action.type) {
         case actionTypes.ADD_INGREDIENT:
             return{
@@ -43,6 +43,7 @@ const burgerBuilder= (state = initialState, action) => {
                     cheese: action.ingredients.cheese,
                     meat: action.ingredients.meat
                 },
+                totalPrice: 4,
                 error: false
             };
         case actionTypes.FETCH_INGREDIENTS_FAILED:
@@ -55,4 +56,4 @@ const burgerBuilder= (state = initialState, action) => {
     }
 };
 
-export default burgerBuilder;
+export default reducer;
