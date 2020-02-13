@@ -124,6 +124,7 @@ class ContactData extends Component {
         }
         return isValid;
     }
+
     inputChangedHandler = (event, inputIdentifier) => {
         const updatedOrderForm ={
             ...this.state.orderForm
