@@ -50,3 +50,9 @@ testem.log
 # System Files
 .DS_Store
 Thumbs.db
+
+# deployed output
+.firebase
+build
+.firebaserc
+firebase.json
