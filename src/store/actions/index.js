@@ -1,4 +1,5 @@
 import {fetchIngredientsFailed} from "./burgerBuilder";
+import {fetchOrdersStart, fetchOrdersSuccess} from "./order";
 
 export {
     addIngredient,
@@ -10,7 +11,13 @@ export {
 export {
     purchaseBurger,
     purchaseInit,
-    fetchOrders
+    fetchOrders,
+    purchaseBurgerStart,
+    purchaseBurgerFail,
+    purchaseBurgerSuccess,
+    fetchOrdersStart,
+    fetchOrdersSuccess,
+    fetchOrdersFail
 } from './order'
 export {
     auth,
