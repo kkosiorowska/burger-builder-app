@@ -53,29 +53,11 @@ export const setAuthRedirectPath = (path) => {
 };
 
 export const auth = (email, password, isSignup) => {
-    return dispatch => {
-        dispatch(authStart());
-        const authData = {
-            email: email.value,
-            password: password.value,
-            returnSecureToken: true
-        };
-        let url = 'https://identitytoolkit.googleapis.com/v1/accounts:signUp?key=' + process.env.REACT_APP_KEY;
-       if(!isSignup) {
-           url = 'https://identitytoolkit.googleapis.com/v1/accounts:signInWithPassword?key=' + process.env.REACT_APP_KEY;
-       }
-        axios.post(url, authData)
-            .then( response => {
-                const expirationData = new Date(new Date().getTime() + response.data.expiresIn * 1000);
-                localStorage.setItem('token', response.data.idToken);
-                localStorage.setItem('expirationDate', expirationData);
-                localStorage.setItem('userId', response.data.localId);
-                dispatch(authSucces(response.data.idToken, response.data.localId));
-                dispatch(checkAuthTimeout(response.data.expiresIn));
-            })
-            .catch( err => {
-                dispatch(authFail(err.response.data.error));
-            });
+    return {
+        type: actionTypes.AUTH_USER,
+        email: email,
+        password: password,
+        isSignup: isSignup
     };
 };
 
